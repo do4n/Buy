@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   end
 
   resources :products, only: %i[show index]
+
+  root "products#index"
 end

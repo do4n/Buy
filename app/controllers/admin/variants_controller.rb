@@ -1,2 +1,2 @@
-class Admin::VariantsController < ApplicationController
+class Admin::VariantsController < Admin::BaseController
 end
