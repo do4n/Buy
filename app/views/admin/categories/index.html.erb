@@ -1,0 +1,24 @@
+<h2>Categories</h2>
+<h3>
+  <%= link_to 'New', new_admin_category_path %>
+</h3>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <% @categories.each do |category| %>
+  	<tr>
+	    <td>
+	    	<%= category.name %>	
+	    </td>
+	    <td>
+	    	<%= link_to "Edit", edit_admin_category_path(category) %>
+	    </td>
+	    <td>
+	    	<%= link_to "Delete", admin_category_path(category), data: { "turbo-method": :delete } %>
+	    </td>
+  	</tr>
+  <% end %>
+</table>

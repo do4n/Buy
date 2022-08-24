@@ -1,0 +1,24 @@
+<h2>Products</h2>
+<h3>
+  <%= link_to 'New', new_admin_product_path %>
+</h3>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <% @products.each do |product| %>
+    <tr>
+      <td>
+        <%= product.name %>  
+      </td>
+      <td>
+        <%= link_to "Edit", edit_admin_product_path(product) %>
+      </td>
+      <td>
+        <%= link_to "Delete", admin_product_path(product), data: { "turbo-method": :delete } %>
+      </td>
+    </tr>
+  <% end %>
+</table>

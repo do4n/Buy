@@ -1,0 +1,24 @@
+<h2>Properties</h2>
+<h3>
+  <%= link_to 'New', new_admin_property_path %>
+</h3>
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <% @properties.each do |property| %>
+    <tr>
+      <td>
+        <%= property.key %>  
+      </td>
+      <td>
+        <%= link_to "Edit", edit_admin_property_path(property) %>
+      </td>
+      <td>
+        <%= link_to "Delete", admin_property_path(property), data: { "turbo-method": :delete } %>
+      </td>
+    </tr>
+  <% end %>
+</table>
