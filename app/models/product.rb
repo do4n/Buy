@@ -1,6 +1,4 @@
 class Product < ApplicationRecord
   belongs_to :category
-  has_many :variants
-
-  accepts_nested_attributes_for :variants
+  has_many :product_variants, dependent: :destroy
 end
