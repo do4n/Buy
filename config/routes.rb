@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :products
-    resources :variants
-    resources :variant_properties
+    resources :products do
+      resources :variants
+    end
+    # resources :variant_properties
     resources :properties
     resources :categories
   end

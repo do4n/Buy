@@ -1,3 +1,3 @@
 class Property < ApplicationRecord
-	has_many :variant_properties
+	has_many :variant_properties, dependent: :destroy
 end

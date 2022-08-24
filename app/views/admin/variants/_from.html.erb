@@ -1,0 +1,9 @@
+<%= form_for [:admin, variant] do |f| %>
+  <%= f.field_for :variant_properties do |ff| do %>
+    <%= ff.options_for_select(Property.all.collect{|p| [p.key, p.id]}, "Select") %>
+    <%= ff.field_for :property_value do |fff| do %>
+      <%= fff.label :value %>
+      <%= fff.text_field :value %>
+    <% end %>
+  <% end %>
+<% end %>
