@@ -1,14 +1,20 @@
 <h2>Products</h2>
-<h3>
-  <%= link_to 'New', new_admin_product_path %>
-</h3>
+
+<div class="dropdown">
+  <button class="dropbtn">New</button>
+  <div class="dropdown-content">
+    <%= link_to 'Simple', new_admin_product_path(style_product: :simple) %>
+    <%= link_to 'Configable', new_admin_product_path(style_product: :configable) %>
+  </div>
+</div>
+
 <table>
   <tr>
     <th>Name</th>
     <th>Edit</th>
     <th>Delete</th>
   </tr>
-  <% @products.each do |product| %>
+  <% Product.products_by([:simple, :configable]).each do |product| %>
     <tr>
       <td>
         <%= product.name %>  

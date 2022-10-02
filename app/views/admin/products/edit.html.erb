@@ -1,3 +1,5 @@
-<%= render 'tab' %>
+<% if @product.configable? %>
+  <%= render 'tab', product: @product %>
+<% end %>
 <h2>Edit</h2>
 <%= render 'form', product: @product %>

@@ -1,9 +1,40 @@
 <div class="container">
   <%= form_for [:admin, product] do |f| %>
+    <%= hidden_field_tag :style_product, params[:style_product] %>
     <%= f.label :name %>
     <%= f.text_field :name %>
     <%= f.label :description %>
     <%= f.text_area :description %>
+    <%= f.label :category %>
+    <%= f.collection_select :category_id, Category.all, :id, :name%>
+    <% unless product.id %>
+      <% if params[:style_product] == "simple" %>
+        <%= f.fields_for :property_value_floats do |ff| %>
+          <div>
+            <%= ff.label ff.object.property.name %>
+            <%= ff.number_field :value %>
+          </div>
+        <% end %>
+      <% elsif params[:style_product] == "configable" %>
+        <%= fields_for :property_value_strings do |ff|%>
+          <%= ff.label :color %>
+          <%= ff.collection_check_boxes(:colors, [['yellow'], ['red'], ['green']], :first, :first)%>
+          <div>
+            <%= ff.label :size %>
+            <%= ff.collection_check_boxes :sizes, [["S"], ["M"], ["L"]], :first, :first  %>
+          </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <% if product.simple? %>
+        <%= f.fields_for :property_value_floats do |ff| %>
+          <div>
+            <%= ff.label :price %>
+            <%= ff.number_field :value %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
     <%= f.submit "Submit" %>
   <% end %>
 </div>

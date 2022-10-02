@@ -1,4 +1,4 @@
 class Property < ApplicationRecord
-	has_many :property_value_floats, dependent: :destroy
-  has_many :property_value_strings, dependent: :destroy
+	has_many :products, through: :property_value_strings
+  has_many :products, through: :property_value_floats
 end
