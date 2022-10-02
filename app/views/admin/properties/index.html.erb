@@ -4,14 +4,14 @@
 </h3>
 <table>
   <tr>
-    <th>Key</th>
+    <th>Name</th>
     <th>Edit</th>
     <th>Delete</th>
   </tr>
   <% @properties.each do |property| %>
     <tr>
       <td>
-        <%= property.key %>  
+        <%= property.name %>  
       </td>
       <td>
         <%= link_to "Edit", edit_admin_property_path(property) %>

@@ -1,4 +1,6 @@
 class PropertyValueString < ApplicationRecord
   belongs_to :property
-  has_many :products, dependent: :destroy
+  belongs_to :product
+
+  delegate :name, to: :property
 end

@@ -1,1 +1,34 @@
 <h1>Variants Index</h1>
+<table>
+  <tr>
+    <th>size</th>
+    <th>color</th>
+    <th>price | quantity</th>
+    <th>delete</th>
+  </tr>
+  <% @variants.each do |variant| %>
+    <% list_properties = variant.properties.pluck(:name) %>
+      <tr>
+        <% if list_properties.include?("size") %>
+          <td>
+            <%= variant.property_string(:size).value %>
+          </td>
+        <% end %>
+        <% if list_properties.include?("color") %>
+          <td>
+            <%= variant.property_string(:color).value %>  
+          </td>
+        <% end %>
+        <td>
+          <%= form_for [:admin, variant],  url: admin_variant_path(variant), method: :put  do |f| %>
+            <%= number_field_tag :price, variant.property_float(:price)&.value, min: 0, max: 1000, class: "w-20" %>
+            <%= number_field_tag :quantity, variant.property_float(:quantity)&.value,min: 0, max: 1000, class: "w-20" %>
+            <%= submit_tag "update" %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to "Delete", admin_variant_path(variant), data: { "turbo-method": :delete } %>
+        </td>
+      </tr>
+  <% end %>
+</table>
